@@ -531,6 +531,37 @@ html[data-theme="dark"] .theme-toggle::before {
   max-width: 620px;
 }
 
+.trust-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: -12px 0 30px;
+}
+
+.trust-chips span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.92);
+  padding: 6px 11px;
+  font-size: 13px;
+  font-weight: 850;
+  backdrop-filter: blur(12px);
+}
+
+.trust-chips span::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 4px rgba(74, 214, 202, 0.16);
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -953,6 +984,11 @@ html[data-theme="dark"] .pill {
   padding: 26px 8px 26px 0;
 }
 
+.confidence-intro .button {
+  justify-self: start;
+  margin-top: 8px;
+}
+
 .confidence-intro h2 {
   font-size: 30px;
   line-height: 1.15;
@@ -968,6 +1004,7 @@ html[data-theme="dark"] .pill {
   background: linear-gradient(180deg, var(--surface-strong), var(--surface-muted));
   padding: 24px;
   min-height: 190px;
+  box-shadow: 0 16px 42px rgba(0, 29, 63, 0.06);
 }
 
 .confidence-card::after {
