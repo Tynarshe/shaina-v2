@@ -3,6 +3,9 @@ const menuButton = document.querySelector("[data-menu-toggle]");
 const mobilePanel = document.querySelector("[data-mobile-panel]");
 const header = document.querySelector(".site-header");
 const progressBar = document.querySelector("[data-scroll-progress]");
+const plannerPanel = document.querySelector("[data-planner-panel]");
+const plannerOverlay = document.querySelector("[data-planner-overlay]");
+let lastPlannerTrigger = null;
 
 function setMenu(open) {
   if (!menuButton || !mobilePanel) return;
@@ -22,7 +25,45 @@ if (menuButton && mobilePanel) {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setMenu(false);
+    if (event.key === "Escape") {
+      setMenu(false);
+      setPlanner(false);
+    }
+  });
+}
+
+function setPlanner(open, trigger = null) {
+  if (!plannerPanel || !plannerOverlay) return;
+  if (open) {
+    lastPlannerTrigger = trigger;
+    plannerPanel.hidden = false;
+    plannerOverlay.hidden = false;
+    document.body.classList.add("planner-open");
+    plannerPanel.querySelector("[data-planner-close]")?.focus();
+    return;
+  }
+
+  plannerPanel.hidden = true;
+  plannerOverlay.hidden = true;
+  document.body.classList.remove("planner-open");
+  if (lastPlannerTrigger) lastPlannerTrigger.focus();
+}
+
+document.querySelectorAll("[data-planner-open]").forEach((button) => {
+  button.addEventListener("click", () => setPlanner(true, button));
+});
+
+document.querySelectorAll("[data-planner-close]").forEach((button) => {
+  button.addEventListener("click", () => setPlanner(false));
+});
+
+if (plannerOverlay) {
+  plannerOverlay.addEventListener("click", () => setPlanner(false));
+}
+
+if (!menuButton) {
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setPlanner(false);
   });
 }
 
