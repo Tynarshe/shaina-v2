@@ -6,10 +6,11 @@
     <title>Our Services | Shaina Cleaning Services</title>
     <meta name="description" content="Explore Shaina Cleaning Services for domestic, commercial, deep, window, carpet and office cleaning.">
     <link rel="icon" href="assets/img/shaina-logo.png">
-    <link rel="stylesheet" href="assets/css/styles.css?v=3">
+    <link rel="stylesheet" href="assets/css/styles.css?v=4">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
 
     <div class="site-topbar">
       <div class="container topbar-inner">
@@ -41,6 +42,7 @@
           </ul>
         </nav>
         <div class="nav-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Use dark mode" aria-pressed="false"></button>
           <a class="button button-primary" href="contact.html#booking">Book a Schedule</a>
           <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
             <span class="menu-lines" aria-hidden="true"></span>
@@ -56,6 +58,7 @@
             <a class="nav-link" data-nav-link href="faq.html">FAQ</a>
             <a class="nav-link" data-nav-link href="job-application.html">Jobs</a>
             <a class="nav-link" data-nav-link href="contact.html">Contact</a>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Use dark mode" aria-pressed="false"></button>
             <a class="button button-primary button-full" href="contact.html#booking">Book a Schedule</a>
           </nav>
         </div>
@@ -78,6 +81,10 @@
             <p class="eyebrow">Service menu</p>
             <h2>Find the right clean faster.</h2>
             <p class="lead">Use the filters to focus the services by property type or specialist need.</p>
+          </div>
+          <div class="dynamic-toolbar" data-reveal>
+            <input class="search-input" type="search" data-service-search aria-label="Search services" placeholder="Search by service, space, or task">
+            <span class="dynamic-count" data-service-count>6 services shown</span>
           </div>
           <div class="filter-row" role="group" aria-label="Filter services">
             <button class="filter-button is-active" type="button" data-filter="all">All</button>
@@ -147,6 +154,7 @@
               <a class="button button-secondary" href="contact.html#booking">Request Office Cleaning</a>
             </article>
           </div>
+          <p class="empty-state" data-services-empty>No matching service found. Try a broader search.</p>
         </div>
       </section>
 
@@ -249,6 +257,6 @@
       </div>
     </footer>
 
-    <script src="assets/js/main.js?v=2" defer></script>
+    <script src="assets/js/main.js?v=4" defer></script>
   </body>
 </html>

@@ -6,10 +6,11 @@
     <title>Shaina Cleaning Services | Cleaning Excellence, Every Time</title>
     <meta name="description" content="Professional residential and commercial cleaning services in Sheffield, including domestic, deep, carpet, window and office cleaning.">
     <link rel="icon" href="assets/img/shaina-logo.png">
-    <link rel="stylesheet" href="assets/css/styles.css?v=3">
+    <link rel="stylesheet" href="assets/css/styles.css?v=4">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
 
     <div class="site-topbar">
       <div class="container topbar-inner">
@@ -41,6 +42,7 @@
           </ul>
         </nav>
         <div class="nav-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Use dark mode" aria-pressed="false"></button>
           <a class="button button-primary" href="contact.html#booking">Book a Schedule</a>
           <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
             <span class="menu-lines" aria-hidden="true"></span>
@@ -48,7 +50,7 @@
         </div>
       </div>
       <div class="mobile-panel" id="mobile-nav" data-mobile-panel>
-        <div class="container">
+        <div class="container hero-layout">
           <nav aria-label="Mobile navigation">
             <a class="nav-link" data-nav-link href="index.html">Home</a>
             <a class="nav-link" data-nav-link href="about.html">About</a>
@@ -56,6 +58,7 @@
             <a class="nav-link" data-nav-link href="faq.html">FAQ</a>
             <a class="nav-link" data-nav-link href="job-application.html">Jobs</a>
             <a class="nav-link" data-nav-link href="contact.html">Contact</a>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Use dark mode" aria-pressed="false"></button>
             <a class="button button-primary button-full" href="contact.html#booking">Book a Schedule</a>
           </nav>
         </div>
@@ -70,7 +73,7 @@
         <div class="container">
           <div class="hero-content" data-reveal>
             <p class="eyebrow">Premier cleaning solutions</p>
-            <h1>Welcome to Shaina Cleanliness!</h1>
+            <h1>Smarter cleaning for <span class="rotating-word" data-rotating-word>homes</span>.</h1>
             <p class="lead">Discover the difference with professional cleaning services tailored to everyday home and business needs across Sheffield and surrounding areas.</p>
             <div class="hero-actions">
               <a class="button button-primary" href="contact.html#booking">Book a Schedule</a>
@@ -78,40 +81,98 @@
             </div>
             <div class="hero-metrics" aria-label="Shaina highlights">
               <div class="metric">
-                <strong>24hr</strong>
+                <strong data-count-to="24" data-count-suffix="hr">24hr</strong>
                 <span>Fast response target</span>
               </div>
               <div class="metric">
-                <strong>5.0</strong>
+                <strong data-count-to="5" data-count-decimals="1">5.0</strong>
                 <span>Bark review rating</span>
               </div>
               <div class="metric">
-                <strong>100%</strong>
+                <strong data-count-to="100" data-count-suffix="%">100%</strong>
                 <span>Insured cleaning teams</span>
               </div>
             </div>
           </div>
+          <aside class="planner-card" data-estimator aria-label="Cleaning plan estimator">
+            <p class="eyebrow">Live planner</p>
+            <h2>Build your cleaning plan</h2>
+            <p class="lead">Adjust the options and get an instant visit outline.</p>
+            <div class="planner-form">
+              <div class="planner-row">
+                <label for="hero-plan-service">Service</label>
+                <select id="hero-plan-service" data-plan-service>
+                  <option value="domestic">Domestic cleaning</option>
+                  <option value="commercial">Commercial cleaning</option>
+                  <option value="deep">Deep cleaning</option>
+                  <option value="carpet">Carpet cleaning</option>
+                  <option value="window">Window cleaning</option>
+                </select>
+              </div>
+              <div class="planner-row">
+                <label for="hero-plan-property">Property</label>
+                <select id="hero-plan-property" data-plan-property>
+                  <option value="home">Home</option>
+                  <option value="office">Office</option>
+                  <option value="commercial">Commercial site</option>
+                </select>
+              </div>
+              <div class="planner-row">
+                <div class="range-line">
+                  <label for="hero-plan-rooms">Rooms or zones</label>
+                  <output data-plan-room-output for="hero-plan-rooms">4</output>
+                </div>
+                <input id="hero-plan-rooms" data-plan-rooms type="range" min="1" max="12" value="4">
+              </div>
+              <div class="planner-row">
+                <label for="hero-plan-frequency">Frequency</label>
+                <select id="hero-plan-frequency" data-plan-frequency>
+                  <option value="one-off">One-off</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="fortnightly">Fortnightly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
+              </div>
+            </div>
+            <div class="planner-output" data-plan-output>
+              <strong data-plan-title>Domestic reset</strong>
+              <span data-plan-time>4 hour visit</span>
+              <span data-plan-team>1 cleaner recommended</span>
+              <div class="planner-tags" data-plan-tags></div>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <section class="section-tight stat-band" aria-label="Trust indicators">
-        <div class="container stat-grid">
-          <div class="stat-item">
-            <strong>6</strong>
-            <span>Core cleaning services</span>
+      <section class="availability-strip" aria-label="Live availability">
+        <div class="container availability-inner">
+          <strong class="live-badge">Fast response window open</strong>
+          <p>Use the planner, pick a service, then send the details through the booking form.</p>
+          <a class="button button-secondary" href="contact.html#booking">Send My Plan</a>
+        </div>
+      </section>
+
+      <section class="section-tight confidence-band" aria-label="Service confidence">
+        <div class="container confidence-grid">
+          <div class="confidence-intro">
+            <p class="eyebrow">Service confidence</p>
+            <h2>Clean plans that feel organised from the first message.</h2>
           </div>
-          <div class="stat-item">
-            <strong>7</strong>
-            <span>Day enquiry support</span>
-          </div>
-          <div class="stat-item">
-            <strong>Eco</strong>
-            <span>Safer product choices</span>
-          </div>
-          <div class="stat-item">
-            <strong>S9</strong>
-            <span>Sheffield based office</span>
-          </div>
+          <article class="confidence-card">
+            <span>01</span>
+            <h3>Matched to your space</h3>
+            <p>Homes, offices and commercial sites get a cleaning plan shaped around rooms, surfaces and timing.</p>
+          </article>
+          <article class="confidence-card">
+            <span>02</span>
+            <h3>Fast quote follow-up</h3>
+            <p>Send the brief and the team can come back quickly with the right service, visit length and next step.</p>
+          </article>
+          <article class="confidence-card">
+            <span>03</span>
+            <h3>Careful product choices</h3>
+            <p>Practical, surface-aware cleaning with safer product options for family homes and busy workspaces.</p>
+          </article>
         </div>
       </section>
 
@@ -264,6 +325,6 @@
       </div>
     </footer>
 
-    <script src="assets/js/main.js?v=2" defer></script>
+    <script src="assets/js/main.js?v=4" defer></script>
   </body>
 </html>

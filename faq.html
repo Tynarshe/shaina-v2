@@ -6,10 +6,11 @@
     <title>FAQ | Shaina Cleaning Services</title>
     <meta name="description" content="Answers to common questions about Shaina Cleaning Services, pricing, safe products, areas served and bookings.">
     <link rel="icon" href="assets/img/shaina-logo.png">
-    <link rel="stylesheet" href="assets/css/styles.css?v=3">
+    <link rel="stylesheet" href="assets/css/styles.css?v=4">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
 
     <div class="site-topbar">
       <div class="container topbar-inner">
@@ -41,6 +42,7 @@
           </ul>
         </nav>
         <div class="nav-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Use dark mode" aria-pressed="false"></button>
           <a class="button button-primary" href="contact.html#booking">Book a Schedule</a>
           <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
             <span class="menu-lines" aria-hidden="true"></span>
@@ -56,6 +58,7 @@
             <a class="nav-link" data-nav-link href="faq.html">FAQ</a>
             <a class="nav-link" data-nav-link href="job-application.html">Jobs</a>
             <a class="nav-link" data-nav-link href="contact.html">Contact</a>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Use dark mode" aria-pressed="false"></button>
             <a class="button button-primary button-full" href="contact.html#booking">Book a Schedule</a>
           </nav>
         </div>
@@ -69,6 +72,16 @@
           <p class="eyebrow">Answers</p>
           <h1>Cleaning questions, answered clearly.</h1>
           <p class="lead">Find quick answers on services, bookings, products, pricing and what to expect before a visit.</p>
+        </div>
+      </section>
+
+      <section class="section-tight surface-muted">
+        <div class="container">
+          <div class="dynamic-toolbar" data-reveal>
+            <input class="search-input" type="search" data-faq-search aria-label="Search frequently asked questions" placeholder="Search pricing, supplies, areas, booking">
+            <span class="dynamic-count" data-faq-count>10 answers shown</span>
+          </div>
+          <p class="empty-state" data-faq-empty>No matching answer found. Send us your question and we will help.</p>
         </div>
       </section>
 
@@ -215,6 +228,6 @@
       </div>
     </footer>
 
-    <script src="assets/js/main.js?v=2" defer></script>
+    <script src="assets/js/main.js?v=4" defer></script>
   </body>
 </html>

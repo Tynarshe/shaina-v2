@@ -1,5 +1,8 @@
+const root = document.documentElement;
 const menuButton = document.querySelector("[data-menu-toggle]");
 const mobilePanel = document.querySelector("[data-mobile-panel]");
+const header = document.querySelector(".site-header");
+const progressBar = document.querySelector("[data-scroll-progress]");
 
 function setMenu(open) {
   if (!menuButton || !mobilePanel) return;
@@ -38,16 +41,109 @@ document.querySelectorAll("[data-nav-link]").forEach((link) => {
   }
 });
 
+function updateScrollState() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = max > 0 ? window.scrollY / max : 0;
+  if (progressBar) progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+  if (header) header.classList.toggle("is-scrolled", window.scrollY > 12);
+}
+
+window.addEventListener("scroll", updateScrollState, { passive: true });
+window.addEventListener("resize", updateScrollState);
+updateScrollState();
+
+function setTheme(theme) {
+  root.dataset.theme = theme;
+  localStorage.setItem("shaina-theme", theme);
+  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+    button.setAttribute("aria-label", theme === "dark" ? "Use light mode" : "Use dark mode");
+    button.setAttribute("aria-pressed", String(theme === "dark"));
+  });
+}
+
+const savedTheme = localStorage.getItem("shaina-theme");
+const preferredDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+setTheme(savedTheme || (preferredDark ? "dark" : "light"));
+
+document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+  button.addEventListener("click", () => {
+    setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+  });
+});
+
+const rotatingWord = document.querySelector("[data-rotating-word]");
+if (rotatingWord) {
+  const words = ["homes", "offices", "shops", "carpets", "windows"];
+  let index = 0;
+  window.setInterval(() => {
+    index = (index + 1) % words.length;
+    rotatingWord.textContent = words[index];
+  }, 1800);
+}
+
+const serviceFilterState = {
+  category: "all",
+  query: "",
+};
+
+function applyServiceFilters() {
+  const cards = Array.from(document.querySelectorAll("[data-service-card]"));
+  const emptyState = document.querySelector("[data-services-empty]");
+  const count = document.querySelector("[data-service-count]");
+  let visible = 0;
+
+  cards.forEach((card) => {
+    const categories = (card.dataset.serviceCard || "").split(" ");
+    const text = card.textContent.toLowerCase();
+    const matchesCategory = serviceFilterState.category === "all" || categories.includes(serviceFilterState.category);
+    const matchesQuery = !serviceFilterState.query || text.includes(serviceFilterState.query);
+    const shouldShow = matchesCategory && matchesQuery;
+    card.hidden = !shouldShow;
+    if (shouldShow) visible += 1;
+  });
+
+  if (emptyState) emptyState.classList.toggle("is-visible", visible === 0);
+  if (count) count.textContent = `${visible} service${visible === 1 ? "" : "s"} shown`;
+}
+
 document.querySelectorAll("[data-filter]").forEach((button) => {
   button.addEventListener("click", () => {
-    const filter = button.dataset.filter || "all";
+    serviceFilterState.category = button.dataset.filter || "all";
     document.querySelectorAll("[data-filter]").forEach((item) => item.classList.remove("is-active"));
     button.classList.add("is-active");
-    document.querySelectorAll("[data-service-card]").forEach((card) => {
-      const categories = (card.dataset.serviceCard || "").split(" ");
-      card.hidden = filter !== "all" && !categories.includes(filter);
-    });
+    applyServiceFilters();
   });
+});
+
+document.querySelectorAll("[data-service-search]").forEach((input) => {
+  input.addEventListener("input", () => {
+    serviceFilterState.query = input.value.trim().toLowerCase();
+    applyServiceFilters();
+  });
+});
+
+applyServiceFilters();
+
+function applyFaqSearch(input) {
+  const query = input.value.trim().toLowerCase();
+  const items = Array.from(document.querySelectorAll(".faq-item"));
+  const count = document.querySelector("[data-faq-count]");
+  const emptyState = document.querySelector("[data-faq-empty]");
+  let visible = 0;
+
+  items.forEach((item) => {
+    const matches = !query || item.textContent.toLowerCase().includes(query);
+    item.hidden = !matches;
+    if (matches) visible += 1;
+  });
+
+  if (count) count.textContent = `${visible} answer${visible === 1 ? "" : "s"} shown`;
+  if (emptyState) emptyState.classList.toggle("is-visible", visible === 0);
+}
+
+document.querySelectorAll("[data-faq-search]").forEach((input) => {
+  input.addEventListener("input", () => applyFaqSearch(input));
+  applyFaqSearch(input);
 });
 
 document.querySelectorAll(".faq-item").forEach((item) => {
@@ -57,6 +153,48 @@ document.querySelectorAll(".faq-item").forEach((item) => {
       if (openItem !== item) openItem.open = false;
     });
   });
+});
+
+const plannerRules = {
+  domestic: { label: "Domestic reset", base: 2, team: 1, extras: ["Kitchen focus", "Bathrooms", "High-touch areas"] },
+  commercial: { label: "Commercial routine", base: 3, team: 2, extras: ["Reception areas", "Washrooms", "Shared spaces"] },
+  deep: { label: "Deep clean sprint", base: 4, team: 2, extras: ["Inside cupboards", "Detail edges", "Limescale reset"] },
+  carpet: { label: "Carpet refresh", base: 2, team: 1, extras: ["Pre-treatment", "Stain focus", "Drying guidance"] },
+  window: { label: "Window clarity", base: 1.5, team: 1, extras: ["Frames", "Sills", "Streak-free glass"] },
+};
+
+function updatePlanner(planner) {
+  const service = planner.querySelector("[data-plan-service]")?.value || "domestic";
+  const property = planner.querySelector("[data-plan-property]")?.value || "home";
+  const roomsInput = planner.querySelector("[data-plan-rooms]");
+  const frequency = planner.querySelector("[data-plan-frequency]")?.value || "one-off";
+  const rooms = Number(roomsInput?.value || 4);
+  const rule = plannerRules[service] || plannerRules.domestic;
+  const frequencyDiscount = frequency === "weekly" ? 0.78 : frequency === "fortnightly" ? 0.88 : frequency === "monthly" ? 0.94 : 1;
+  const propertyBoost = property === "office" ? 1.25 : property === "commercial" ? 1.4 : 1;
+  const hours = Math.max(1.5, (rule.base + rooms * 0.45) * propertyBoost * frequencyDiscount);
+  const team = Math.max(rule.team, hours > 5 ? 2 : 1);
+  const output = planner.querySelector("[data-plan-output]");
+  const roomOutput = planner.querySelector("[data-plan-room-output]");
+  const tags = planner.querySelector("[data-plan-tags]");
+
+  if (roomOutput) roomOutput.textContent = rooms;
+  if (output) {
+    output.querySelector("[data-plan-title]").textContent = rule.label;
+    output.querySelector("[data-plan-time]").textContent = `${hours.toFixed(hours >= 3 ? 0 : 1)} hour visit`;
+    output.querySelector("[data-plan-team]").textContent = `${team} cleaner${team === 1 ? "" : "s"} recommended`;
+  }
+  if (tags) {
+    tags.innerHTML = rule.extras.map((extra) => `<span class="planner-tag">${extra}</span>`).join("");
+  }
+}
+
+document.querySelectorAll("[data-estimator]").forEach((planner) => {
+  planner.querySelectorAll("select, input").forEach((control) => {
+    control.addEventListener("input", () => updatePlanner(planner));
+    control.addEventListener("change", () => updatePlanner(planner));
+  });
+  updatePlanner(planner);
 });
 
 function collectFormBody(form) {
@@ -162,4 +300,35 @@ if ("IntersectionObserver" in window && revealItems.length) {
   revealItems.forEach((item) => observer.observe(item));
 } else {
   revealItems.forEach((item) => item.classList.add("is-visible"));
+}
+
+const counters = document.querySelectorAll("[data-count-to]");
+if ("IntersectionObserver" in window && counters.length) {
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const item = entry.target;
+        const target = Number(item.dataset.countTo || 0);
+        const decimals = Number(item.dataset.countDecimals || 0);
+        const suffix = item.dataset.countSuffix || "";
+        const prefix = item.dataset.countPrefix || "";
+        const duration = 900;
+        const start = performance.now();
+
+        function tick(now) {
+          const progress = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          item.textContent = `${prefix}${(target * eased).toFixed(decimals)}${suffix}`;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(item);
+      });
+    },
+    { threshold: 0.45 }
+  );
+
+  counters.forEach((item) => counterObserver.observe(item));
 }

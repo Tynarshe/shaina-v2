@@ -6,10 +6,11 @@
     <title>Contact Us | Shaina Cleaning Services</title>
     <meta name="description" content="Contact Shaina Cleaning Services to book a cleaning appointment or request a professional cleaning quote.">
     <link rel="icon" href="assets/img/shaina-logo.png">
-    <link rel="stylesheet" href="assets/css/styles.css?v=3">
+    <link rel="stylesheet" href="assets/css/styles.css?v=4">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
 
     <div class="site-topbar">
       <div class="container topbar-inner">
@@ -41,6 +42,7 @@
           </ul>
         </nav>
         <div class="nav-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Use dark mode" aria-pressed="false"></button>
           <a class="button button-primary" href="#booking">Book a Schedule</a>
           <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
             <span class="menu-lines" aria-hidden="true"></span>
@@ -56,6 +58,7 @@
             <a class="nav-link" data-nav-link href="faq.html">FAQ</a>
             <a class="nav-link" data-nav-link href="job-application.html">Jobs</a>
             <a class="nav-link" data-nav-link href="contact.html">Contact</a>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Use dark mode" aria-pressed="false"></button>
             <a class="button button-primary button-full" href="#booking">Book a Schedule</a>
           </nav>
         </div>
@@ -158,6 +161,53 @@
               <li>Preferred date, time and cleaning frequency.</li>
               <li>Any access notes, pets, parking or surface sensitivities.</li>
             </ul>
+            <aside class="planner-card" data-estimator aria-label="Quote planning preview">
+              <p class="eyebrow">Quote preview</p>
+              <h3>Plan before you send</h3>
+              <p class="lead">Use this quick planner to shape your enquiry.</p>
+              <div class="planner-form">
+                <div class="planner-row">
+                  <label for="contact-plan-service">Service</label>
+                  <select id="contact-plan-service" data-plan-service>
+                    <option value="domestic">Domestic cleaning</option>
+                    <option value="commercial">Commercial cleaning</option>
+                    <option value="deep">Deep cleaning</option>
+                    <option value="carpet">Carpet cleaning</option>
+                    <option value="window">Window cleaning</option>
+                  </select>
+                </div>
+                <div class="planner-row">
+                  <label for="contact-plan-property">Property</label>
+                  <select id="contact-plan-property" data-plan-property>
+                    <option value="home">Home</option>
+                    <option value="office">Office</option>
+                    <option value="commercial">Commercial site</option>
+                  </select>
+                </div>
+                <div class="planner-row">
+                  <div class="range-line">
+                    <label for="contact-plan-rooms">Rooms or zones</label>
+                    <output data-plan-room-output for="contact-plan-rooms">4</output>
+                  </div>
+                  <input id="contact-plan-rooms" data-plan-rooms type="range" min="1" max="12" value="4">
+                </div>
+                <div class="planner-row">
+                  <label for="contact-plan-frequency">Frequency</label>
+                  <select id="contact-plan-frequency" data-plan-frequency>
+                    <option value="one-off">One-off</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="fortnightly">Fortnightly</option>
+                    <option value="monthly">Monthly</option>
+                  </select>
+                </div>
+              </div>
+              <div class="planner-output" data-plan-output>
+                <strong data-plan-title>Domestic reset</strong>
+                <span data-plan-time>4 hour visit</span>
+                <span data-plan-team>1 cleaner recommended</span>
+                <div class="planner-tags" data-plan-tags></div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
@@ -205,6 +255,6 @@
       </div>
     </footer>
 
-    <script src="assets/js/main.js?v=2" defer></script>
+    <script src="assets/js/main.js?v=4" defer></script>
   </body>
 </html>
