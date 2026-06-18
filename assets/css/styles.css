@@ -131,6 +131,26 @@ textarea {
   pointer-events: none;
 }
 
+@keyframes ambient-drift {
+  0% {
+    transform: translate3d(-4%, -2%, 0) rotate(-1deg);
+  }
+
+  100% {
+    transform: translate3d(4%, 2%, 0) rotate(1deg);
+  }
+}
+
+@keyframes soft-scan {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+
+  100% {
+    background-position: 0 0, 100% 0;
+  }
+}
+
 .container {
   width: min(100% - 40px, var(--max));
   margin-inline: auto;
@@ -488,9 +508,23 @@ html[data-theme="dark"] .theme-toggle::before {
   color: #fff;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 22%, rgba(255, 255, 255, 0.055) 32%, transparent 43%),
+    linear-gradient(62deg, transparent 54%, rgba(74, 214, 202, 0.07) 64%, transparent 75%);
+  opacity: 0.78;
+  mix-blend-mode: screen;
+  animation: ambient-drift 18s ease-in-out infinite alternate;
+}
+
 .hero-layout {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(330px, 420px);
   gap: 44px;
@@ -520,7 +554,7 @@ html[data-theme="dark"] .theme-toggle::before {
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 690px;
   margin-inline: auto;
   padding: 86px 0;
@@ -867,9 +901,24 @@ body.planner-open {
   padding: 96px 0 84px;
 }
 
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 52px, rgba(255, 255, 255, 0.026) 52px 53px),
+    linear-gradient(110deg, transparent 18%, rgba(74, 214, 202, 0.09) 48%, transparent 76%);
+  background-size: auto, 220% 100%;
+  opacity: 0.8;
+  animation: soft-scan 24s ease-in-out infinite alternate;
+}
+
 .page-hero::after {
   content: "";
   position: absolute;
+  z-index: 0;
   right: -120px;
   top: 24px;
   width: 380px;
@@ -1451,6 +1500,19 @@ html[data-theme="dark"] .pill {
   padding: 42px;
 }
 
+.cta-strip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.06) 44%, transparent 64%),
+    linear-gradient(90deg, rgba(74, 214, 202, 0.08), transparent 42%, rgba(245, 130, 32, 0.08));
+  background-size: 180% 100%, 100% 100%;
+  opacity: 0.7;
+  animation: soft-scan 20s ease-in-out infinite alternate;
+}
+
 html[data-theme="dark"] .cta-strip {
   background: #06172b;
 }
@@ -1789,5 +1851,11 @@ html[data-theme="dark"] .cta-strip {
   [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+
+  .hero::before,
+  .page-hero::before,
+  .cta-strip::before {
+    animation: none !important;
   }
 }
