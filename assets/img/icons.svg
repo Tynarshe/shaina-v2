@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="icon-home" viewBox="0 0 24 24">
+    <path d="M3 11.5 12 4l9 7.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5 10.5V20h5v-5h4v5h5v-9.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-office" viewBox="0 0 24 24">
+    <path d="M5 21V4h10v17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15 9h4v12" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8 8h4M8 12h4M8 16h4" fill="none" stroke="currentColor" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-spark" viewBox="0 0 24 24">
+    <path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2Z" fill="none" stroke="currentColor" stroke-linejoin="round"/>
+    <path d="m19 15 .8 2.7 2.7.8-2.7.8L19 21l-.8-2.7-2.7-.8 2.7-.8L19 15Z" fill="none" stroke="currentColor" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-window" viewBox="0 0 24 24">
+    <path d="M4 4h16v16H4zM12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-carpet" viewBox="0 0 24 24">
+    <path d="M5 4h14v12a4 4 0 0 1-4 4H5V4Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9 8h6M9 12h6" fill="none" stroke="currentColor" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24">
+    <path d="m5 12 4 4L19 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
