@@ -1438,6 +1438,9 @@ html[data-theme="dark"] .cta-strip {
 
 .footer-logo {
   width: 260px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
   margin-bottom: 18px;
   padding: 10px;
   border-radius: var(--radius);
