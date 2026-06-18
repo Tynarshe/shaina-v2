@@ -1739,10 +1739,45 @@ html[data-theme="dark"] .cta-strip {
     min-height: auto;
   }
 
+  .hero h1 {
+    max-width: 340px;
+    margin-inline: auto;
+    margin-bottom: 16px;
+    font-size: 36px;
+  }
+
+  .hero .eyebrow {
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+
+  .hero .lead {
+    max-width: 330px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
   .hero-actions,
   .cta-content .button,
-  .hero-actions .button {
+  .hero-actions .button-primary {
     width: 100%;
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .hero-actions .button-outline {
+    width: auto;
+    min-height: auto;
+    margin-inline: auto;
+    border: 0;
+    background: transparent;
+    color: #ffd7b4;
+    padding: 2px 0;
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
   .dynamic-toolbar,
@@ -1753,40 +1788,57 @@ html[data-theme="dark"] .cta-strip {
   }
 
   .hero-metrics {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
-    margin-top: 28px;
+    display: flex;
+    grid-template-columns: none;
+    gap: 0;
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 4px;
   }
 
   .metric {
-    min-height: 88px;
-    padding: 12px 10px;
+    flex: 1 1 0;
+    min-height: 0;
+    border: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.16);
+    background: transparent;
+    padding: 4px 6px;
+  }
+
+  .metric:last-child {
+    border-right: 0;
   }
 
   .metric strong {
-    font-size: 22px;
+    font-size: 18px;
   }
 
   .metric span {
-    margin-top: 6px;
-    font-size: 11px;
-    line-height: 1.35;
+    margin-top: 4px;
+    font-size: 10px;
+    line-height: 1.25;
   }
 
   .hero-content {
-    padding: 48px 0;
+    padding: 38px 0 36px;
   }
 
   .trust-chips {
     justify-content: center;
-    gap: 8px;
-    margin-bottom: 24px;
+    gap: 7px;
+    margin-bottom: 18px;
+  }
+
+  .trust-chips span:nth-child(3) {
+    display: none;
   }
 
   .trust-chips span {
-    min-height: 32px;
-    padding: 5px 10px;
-    font-size: 12px;
+    min-height: 30px;
+    padding: 5px 9px;
+    font-size: 11px;
   }
 
   .availability-strip {
