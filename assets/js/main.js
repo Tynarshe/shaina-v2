@@ -114,7 +114,7 @@ document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
 
 const rotatingWord = document.querySelector("[data-rotating-word]");
 if (rotatingWord) {
-  const words = ["homes", "offices", "landlords", "shops", "families"];
+  const words = ["Offices", "Commercials", "Schools", "Warehouses", "Retails", "Construction Sites", "After Builders"];
   let index = 0;
   window.setInterval(() => {
     index = (index + 1) % words.length;
