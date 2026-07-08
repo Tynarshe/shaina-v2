@@ -1891,6 +1891,10 @@ html[data-theme="dark"] .cta-strip {
     min-width: min(17ch, 100%);
   }
 
+  .rotating-punctuation {
+    display: none;
+  }
+
   .availability-strip {
     padding: 18px 0;
   }
