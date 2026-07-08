@@ -1787,7 +1787,7 @@ html[data-theme="dark"] .cta-strip {
     max-width: 340px;
     margin-inline: auto;
     margin-bottom: 16px;
-    font-size: 36px;
+    font-size: 32px;
   }
 
   .hero .eyebrow {
@@ -1887,8 +1887,8 @@ html[data-theme="dark"] .cta-strip {
     font-size: 11px;
   }
 
-  .hero-for {
-    display: none;
+  .hero-for::after {
+    content: ":";
   }
 
   .rotating-line {
@@ -1899,10 +1899,6 @@ html[data-theme="dark"] .cta-strip {
 
   .rotating-word {
     min-width: min(23ch, 100%);
-  }
-
-  .rotating-word::before {
-    content: "for ";
   }
 
   .rotating-punctuation {
@@ -1959,8 +1955,13 @@ html[data-theme="dark"] .cta-strip {
 }
 
 @media (max-width: 380px) {
+  .hero h1 {
+    max-width: 320px;
+    font-size: 28px;
+  }
+
   .rotating-line {
-    font-size: 26px;
+    font-size: 24px;
   }
 }
 
