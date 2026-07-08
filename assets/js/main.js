@@ -93,28 +93,35 @@ window.addEventListener("scroll", updateScrollState, { passive: true });
 window.addEventListener("resize", updateScrollState);
 updateScrollState();
 
-function setTheme(theme) {
+const themeStorageKey = "shaina-theme";
+const themeSourceStorageKey = "shaina-theme-source";
+
+function setTheme(theme, persist = false) {
   root.dataset.theme = theme;
-  localStorage.setItem("shaina-theme", theme);
+  if (persist) {
+    localStorage.setItem(themeStorageKey, theme);
+    localStorage.setItem(themeSourceStorageKey, "manual");
+  }
   document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
     button.setAttribute("aria-label", theme === "dark" ? "Use light mode" : "Use dark mode");
     button.setAttribute("aria-pressed", String(theme === "dark"));
   });
 }
 
-const savedTheme = localStorage.getItem("shaina-theme");
-const preferredDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-setTheme(savedTheme || (preferredDark ? "dark" : "light"));
+const savedTheme = localStorage.getItem(themeStorageKey);
+const savedThemeWasManual = localStorage.getItem(themeSourceStorageKey) === "manual";
+const initialTheme = savedThemeWasManual && ["dark", "light"].includes(savedTheme) ? savedTheme : "light";
+setTheme(initialTheme);
 
 document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
   button.addEventListener("click", () => {
-    setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+    setTheme(root.dataset.theme === "dark" ? "light" : "dark", true);
   });
 });
 
 const rotatingWord = document.querySelector("[data-rotating-word]");
 if (rotatingWord) {
-  const words = ["Offices", "Commercials", "Schools", "Warehouses", "Retails", "Construction Sites", "After Builders"];
+  const words = ["Offices", "Commercial Cleaning", "Schools", "Warehouses", "Retails", "Construction Sites", "After Builders"];
   let index = 0;
   window.setInterval(() => {
     index = (index + 1) % words.length;
