@@ -1887,8 +1887,22 @@ html[data-theme="dark"] .cta-strip {
     font-size: 11px;
   }
 
+  .hero-for {
+    display: none;
+  }
+
+  .rotating-line {
+    font-size: 28px;
+    line-height: 1.08;
+    white-space: nowrap;
+  }
+
   .rotating-word {
-    min-width: min(17ch, 100%);
+    min-width: min(23ch, 100%);
+  }
+
+  .rotating-word::before {
+    content: "for ";
   }
 
   .rotating-punctuation {
@@ -1941,6 +1955,12 @@ html[data-theme="dark"] .cta-strip {
 
   .footer-grid {
     gap: 30px;
+  }
+}
+
+@media (max-width: 380px) {
+  .rotating-line {
+    font-size: 26px;
   }
 }
 
