@@ -65,7 +65,7 @@ updateScrollState();
 
 const rotatingWord = document.querySelector("[data-rotating-word]");
 if (rotatingWord) {
-  const words = ["Offices", "Commercial Cleaning", "Schools", "Warehouses", "Retails", "Deep clean", "After Builders"];
+  const words = ["Offices", "Commercial Cleaning", "Schools", "Warehouses", "Retails", "Deep Clean", "After Builders Clean"];
   let index = 0;
   window.setInterval(() => {
     index = (index + 1) % words.length;
