@@ -1,36 +1,8 @@
-const root = document.documentElement;
-const menuButton = document.querySelector("[data-menu-toggle]");
-const mobilePanel = document.querySelector("[data-mobile-panel]");
 const header = document.querySelector(".site-header");
 const progressBar = document.querySelector("[data-scroll-progress]");
 const plannerPanel = document.querySelector("[data-planner-panel]");
 const plannerOverlay = document.querySelector("[data-planner-overlay]");
 let lastPlannerTrigger = null;
-
-function setMenu(open) {
-  if (!menuButton || !mobilePanel) return;
-  menuButton.setAttribute("aria-expanded", String(open));
-  mobilePanel.classList.toggle("is-open", open);
-  document.body.classList.toggle("menu-open", open);
-}
-
-if (menuButton && mobilePanel) {
-  menuButton.addEventListener("click", () => {
-    const open = menuButton.getAttribute("aria-expanded") !== "true";
-    setMenu(open);
-  });
-
-  mobilePanel.addEventListener("click", (event) => {
-    if (event.target.closest("a")) setMenu(false);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      setMenu(false);
-      setPlanner(false);
-    }
-  });
-}
 
 function setPlanner(open, trigger = null) {
   if (!plannerPanel || !plannerOverlay) return;
@@ -61,11 +33,9 @@ if (plannerOverlay) {
   plannerOverlay.addEventListener("click", () => setPlanner(false));
 }
 
-if (!menuButton) {
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setPlanner(false);
-  });
-}
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") setPlanner(false);
+});
 
 const currentFile = (() => {
   const last = window.location.pathname.split("/").filter(Boolean).pop();
@@ -93,35 +63,9 @@ window.addEventListener("scroll", updateScrollState, { passive: true });
 window.addEventListener("resize", updateScrollState);
 updateScrollState();
 
-const themeStorageKey = "shaina-theme";
-const themeSourceStorageKey = "shaina-theme-source";
-
-function setTheme(theme, persist = false) {
-  root.dataset.theme = theme;
-  if (persist) {
-    localStorage.setItem(themeStorageKey, theme);
-    localStorage.setItem(themeSourceStorageKey, "manual");
-  }
-  document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
-    button.setAttribute("aria-label", theme === "dark" ? "Use light mode" : "Use dark mode");
-    button.setAttribute("aria-pressed", String(theme === "dark"));
-  });
-}
-
-const savedTheme = localStorage.getItem(themeStorageKey);
-const savedThemeWasManual = localStorage.getItem(themeSourceStorageKey) === "manual";
-const initialTheme = savedThemeWasManual && ["dark", "light"].includes(savedTheme) ? savedTheme : "light";
-setTheme(initialTheme);
-
-document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
-  button.addEventListener("click", () => {
-    setTheme(root.dataset.theme === "dark" ? "light" : "dark", true);
-  });
-});
-
 const rotatingWord = document.querySelector("[data-rotating-word]");
 if (rotatingWord) {
-  const words = ["Offices", "Commercial Cleaning", "Schools", "Warehouses", "Retails", "Construction Sites", "After Builders"];
+  const words = ["Offices", "Commercial Cleaning", "Schools", "Warehouses", "Retails", "Deep clean", "After Builders"];
   let index = 0;
   window.setInterval(() => {
     index = (index + 1) % words.length;
